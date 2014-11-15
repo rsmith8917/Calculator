@@ -8,8 +8,10 @@ namespace Calculator.Operators
 {
     class DivisionOperator : Operator
     {
-        public override double Operate(double num1, double num2)
+        public override double Operate(Stack<double> numStack)
         {
+            double num2 = numStack.Pop();
+            double num1 = numStack.Pop();
             if (num2 == 0)
                 throw new DivideByZeroException("Cannot divide by zero");
             else

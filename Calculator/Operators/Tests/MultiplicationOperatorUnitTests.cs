@@ -14,7 +14,10 @@ namespace Calculator.Operators.Tests
         public void TwoTimesOneEqualsTwoTestMethod()
         {
             var MultiplicationOperator = new MultiplicationOperator();
-            var result = MultiplicationOperator.Operate(2, 1);
+            var numStack = new Stack<double>();
+            numStack.Push(2);
+            numStack.Push(1);
+            var result = MultiplicationOperator.Operate(numStack);
             Assert.AreEqual(result, 2);
         }
 
@@ -22,7 +25,10 @@ namespace Calculator.Operators.Tests
         public void ZeroTimesZeroEqualsZeroTestMethod()
         {
             var MultiplicationOperator = new MultiplicationOperator();
-            var result = MultiplicationOperator.Operate(0, 0);
+            var numStack = new Stack<double>();
+            numStack.Push(0);
+            numStack.Push(0);
+            var result = MultiplicationOperator.Operate(numStack);
             Assert.AreEqual(result, 0);
         }
 
@@ -30,7 +36,10 @@ namespace Calculator.Operators.Tests
         public void NegativeFiveTimesThreeEqualsNegativeFifteenTestMethod()
         {
             var MultiplicationOperator = new MultiplicationOperator();
-            var result = MultiplicationOperator.Operate(-5, 3);
+            var numStack = new Stack<double>();
+            numStack.Push(-5);
+            numStack.Push(3);
+            var result = MultiplicationOperator.Operate(numStack);
             Assert.AreEqual(result, -15);
         }
     }

@@ -8,8 +8,10 @@ namespace Calculator.Operators
 {
     class MultiplicationOperator : Operator
     {
-        public override double Operate(double num1, double num2)
+        public override double Operate(Stack<double> numStack)
         {
+            double num2 = numStack.Pop();
+            double num1 = numStack.Pop();
             return num1 * num2;
         }
     }

@@ -8,7 +8,7 @@ namespace Calculator
 {
     public class Operator
     {
-        public virtual double Operate(double num1, double num2)
+        public virtual double Operate(Stack<double> numStack)
         {
             return 0;
         }

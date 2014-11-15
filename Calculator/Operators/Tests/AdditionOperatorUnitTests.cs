@@ -14,7 +14,10 @@ namespace Calculator.Operators.Tests
         public void OnePlusTwoEqualsThreeTestMethod()
         {
             var AdditionOperator = new AdditionOperator();
-            var result = AdditionOperator.Operate(1, 2);
+            var numStack = new Stack<double>();
+            numStack.Push(1);
+            numStack.Push(2);
+            var result = AdditionOperator.Operate(numStack);
             Assert.AreEqual(result, 3);
         }
 
@@ -22,7 +25,10 @@ namespace Calculator.Operators.Tests
         public void ZeroPlusZeroEqualsZeroTestMethod()
         {
             var AdditionOperator = new AdditionOperator();
-            var result = AdditionOperator.Operate(0, 0);
+            var numStack = new Stack<double>();
+            numStack.Push(0);
+            numStack.Push(0);
+            var result = AdditionOperator.Operate(numStack);
             Assert.AreEqual(result, 0);
         }
 
@@ -30,7 +36,10 @@ namespace Calculator.Operators.Tests
         public void NegativeFivePlusThreeEqualsNeagtiveTwoTestMethod()
         {
             var AdditionOperator = new AdditionOperator();
-            var result = AdditionOperator.Operate(-5, 3);
+            var numStack = new Stack<double>();
+            numStack.Push(-5);
+            numStack.Push(3);
+            var result = AdditionOperator.Operate(numStack);
             Assert.AreEqual(result, -2);
         }
     }

@@ -38,19 +38,8 @@ namespace Calculator
                 }
                 catch
                 {
-                    double num1 = 1;
-                    double num2 = 1;
-                    try
-                    {
-                        num1 = valueStack.Pop();
-                        num2 = valueStack.Pop();
-                    }
-                    catch (InvalidOperationException e)
-                    {
-                        throw new Exception("Improperly formatted expression.", e);
-                    }
                     Operator op = OperatorFactory.GetOperator(token);
-                    valueStack.Push(op.Operate(num2, num1));
+                    valueStack.Push(op.Operate(valueStack));
                 }
             }
 

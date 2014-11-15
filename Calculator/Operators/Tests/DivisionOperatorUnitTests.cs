@@ -14,7 +14,10 @@ namespace Calculator.Operators.Tests
         public void TwoDividedByOneEqualsTwoTestMethod()
         {
             var DivisionOperator = new DivisionOperator();
-            var result = DivisionOperator.Operate(2, 1);
+            var numStack = new Stack<double>();
+            numStack.Push(2);
+            numStack.Push(1);
+            var result = DivisionOperator.Operate(numStack);
             Assert.AreEqual(result, 2);
         }
 
@@ -23,14 +26,20 @@ namespace Calculator.Operators.Tests
         public void ZeroDividedByZeroThrowsDivideByZeroExceptionTestMethod()
         {
             var DivisionOperator = new DivisionOperator();
-            var result = DivisionOperator.Operate(0, 0);
+            var numStack = new Stack<double>();
+            numStack.Push(0);
+            numStack.Push(0);
+            var result = DivisionOperator.Operate(numStack);
         }
 
         [TestMethod]
         public void NegativeFiveDividedByThreeEqualsNegativeOnePointSixSevenTestMethod()
         {
             var DivisionOperator = new DivisionOperator();
-            var result = DivisionOperator.Operate(-5, 3);
+            var numStack = new Stack<double>();
+            numStack.Push(-5);
+            numStack.Push(3);
+            var result = DivisionOperator.Operate(numStack);
             Assert.AreEqual(result, -1.666666666666667, 1e-6);
         }
     }
