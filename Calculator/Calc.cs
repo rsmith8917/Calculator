@@ -11,16 +11,14 @@ namespace Calculator
     public class Calc : INotifyPropertyChanged
     {
         private Stack<double> valueStack = new Stack<double>();
-
         private double result = 0;
-
         private string exp;
-
         public string expression 
         { 
             get { return exp; }
             set { exp = value; NotifyPropertyChanged(); } 
         }
+
 
         public void Calculate()
         {

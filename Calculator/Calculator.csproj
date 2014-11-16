@@ -70,6 +70,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Operators\SquareRootOperator.cs" />
     <Compile Include="Operators\ModulusOperator.cs" />
     <Compile Include="Operators\AdditionOperator.cs" />
     <Compile Include="Operators\DivisionOperator.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="Operators\MultiplicationOperator.cs" />
     <Compile Include="Operators\OperatorFactory.cs" />
     <Compile Include="Operators\SubtractionOperator.cs" />
+    <Compile Include="Operators\Tests\SquareRootOperatorUnitTests.cs" />
     <Compile Include="Operators\Tests\ModulusOperatorUnitTests.cs" />
     <Compile Include="Operators\Tests\DivisionOperatorUnitTests.cs" />
     <Compile Include="Operators\Tests\MultiplicationOperatorUnitTests.cs" />

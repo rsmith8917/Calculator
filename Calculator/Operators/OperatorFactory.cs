@@ -23,6 +23,8 @@ namespace Calculator.Operators
                     return new DivisionOperator();
                 case "%":
                     return new ModulusOperator();
+                case "sqrt":
+                    return new SquareRootOperator();
                 default:
                     throw new Exception("Bad Token");
             }
