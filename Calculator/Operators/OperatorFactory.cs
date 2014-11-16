@@ -11,6 +11,8 @@ namespace Calculator.Operators
         static public Operator GetOperator(string token)
         {
 
+            token = token.ToLower();
+
             switch (token)
             {
                 case "+":
