@@ -27,6 +27,8 @@ namespace Calculator.Operators
                     return new ModulusOperator();
                 case "sqrt":
                     return new SquareRootOperator();
+                case "^":
+                    return new PowerRootOperator();
                 default:
                     throw new Exception("Bad Token");
             }

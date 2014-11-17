@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Calc.cs" />
     <Compile Include="CalculatorUnitTests.cs" />
+    <Compile Include="Operators\PowerOperator.cs" />
     <Compile Include="Operators\AdditionOperator.cs" />
     <Compile Include="Operators\DivisionOperator.cs" />
     <Compile Include="Operators\ModulusOperator.cs" />
@@ -52,6 +53,7 @@
     <Compile Include="Operators\OperatorFactory.cs" />
     <Compile Include="Operators\SquareRootOperator.cs" />
     <Compile Include="Operators\SubtractionOperator.cs" />
+    <Compile Include="Operators\Tests\PowerOperatorUnitTests.cs" />
     <Compile Include="Operators\Tests\AdditionOperatorUnitTests.cs" />
     <Compile Include="Operators\Tests\DivisionOperatorUnitTests.cs" />
     <Compile Include="Operators\Tests\ModulusOperatorUnitTests.cs" />
