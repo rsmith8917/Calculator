@@ -37,7 +37,14 @@ namespace Calculator
                 catch
                 {
                     Operator op = OperatorFactory.GetOperator(token);
-                    valueStack.Push(op.Operate(valueStack));
+                    try
+                    {
+                        valueStack.Push(op.Operate(valueStack));
+                    }
+                    catch (InvalidOperationException e)
+                    { 
+                        throw new Exception("Improperly formatted expression.", e); 
+                    }
                 }
             }
 

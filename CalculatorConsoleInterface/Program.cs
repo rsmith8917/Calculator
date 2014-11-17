@@ -11,8 +11,31 @@ namespace Calculator
         static void Main(string[] args)
         {
             Calc calculator = new Calc();
-            Console.WriteLine(calculator.EvaluateReversePolish("3 SQRT").ToString());
-            Console.ReadLine();
+
+            Console.WriteLine("Reverse Polish Calculator");
+            Console.WriteLine();
+
+            while ( true )
+            {
+                Console.Write(">> ");
+                calculator.expression = Console.ReadLine();
+                if (calculator.expression == "exit")
+                    break;
+                try { 
+                    calculator.Calculate();
+                    Console.WriteLine();
+                    Console.Write("Ans = ");
+                    Console.WriteLine(calculator.expression);
+                    Console.WriteLine();
+                }
+                catch (Exception e) { 
+                    Console.WriteLine();
+                    Console.WriteLine("ERROR: " + e.Message);
+                    Console.WriteLine();
+                }
+                
+
+            }
         }
     }
 }
