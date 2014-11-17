@@ -32,7 +32,7 @@ namespace Calculator
             {
                 try
                 {
-                    valueStack.Push(Convert.ToDouble(token));
+                    valueStack.Push(this.GetNumber(token));
                 }
                 catch
                 {
@@ -58,6 +58,21 @@ namespace Calculator
             }
 
             return result;
+        }
+
+        private double GetNumber(string token)
+        {
+            token = token.ToLower();
+
+            switch (token)
+            {
+                case "pi":
+                    return Math.PI;
+                case "e":
+                    return Math.E;
+                default:
+                    return Convert.ToDouble(token);
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

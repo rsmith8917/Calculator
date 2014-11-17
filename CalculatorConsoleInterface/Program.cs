@@ -19,7 +19,7 @@ namespace Calculator
             {
                 Console.Write(">> ");
                 calculator.expression = Console.ReadLine();
-                if (calculator.expression == "exit")
+                if (calculator.expression == "exit" || calculator.expression == "quit")
                     break;
                 try { 
                     calculator.Calculate();

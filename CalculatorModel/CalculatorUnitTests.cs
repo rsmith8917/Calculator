@@ -43,6 +43,22 @@ namespace Calculator
         }
 
         [TestMethod]
+        public void ReversePolishPISquaredEqualsNinePointEightSevenTestMethod()
+        {
+            var calculator = new Calc();
+            var result = calculator.EvaluateReversePolish("PI 2 ^");
+            Assert.AreEqual(result, 9.86960440108935, 1e-8);
+        }
+
+        [TestMethod]
+        public void ReversePolishESquaredEqualsSevenPointThreeNineTestMethod()
+        {
+            var calculator = new Calc();
+            var result = calculator.EvaluateReversePolish("e 2 ^");
+            Assert.AreEqual(result, 7.38905609893, 1e-8);
+        }
+
+        [TestMethod]
         public void ReversePolishOneFortyFourSquareRootEqualsTwelveTestMethod()
         {
             var calculator = new Calc();
