@@ -52,6 +52,7 @@
     <Compile Include="Operators\Operator.cs" />
     <Compile Include="Operators\OperatorFactory.cs" />
     <Compile Include="Operators\FactorialOperator.cs" />
+    <Compile Include="Operators\SineOperator.cs" />
     <Compile Include="Operators\SquareRootOperator.cs" />
     <Compile Include="Operators\SubtractionOperator.cs" />
     <Compile Include="Operators\Tests\OperatorFactoryUnitTests.cs" />
@@ -61,6 +62,7 @@
     <Compile Include="Operators\Tests\ModulusOperatorUnitTests.cs" />
     <Compile Include="Operators\Tests\MultiplicationOperatorUnitTests.cs" />
     <Compile Include="Operators\Tests\FactorialOperatorUnitTests.cs" />
+    <Compile Include="Operators\Tests\SineOperatorUnitTests.cs" />
     <Compile Include="Operators\Tests\SquareRootOperatorUnitTests.cs" />
     <Compile Include="Operators\Tests\SubtractionOperatorUnitTests.cs" />
     <Compile Include="Program.cs" />

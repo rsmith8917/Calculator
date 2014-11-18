@@ -9,16 +9,13 @@ using System.Threading.Tasks;
 namespace Calculator
 {
     public class Calc : INotifyPropertyChanged
-    {
-        private Stack<double> valueStack = new Stack<double>();
-        private double result = 0;
+    {   
         private string exp;
         public string expression 
         { 
             get { return exp; }
             set { exp = value; NotifyPropertyChanged(); } 
         }
-
 
         public void Calculate()
         {
@@ -27,7 +24,12 @@ namespace Calculator
 
         public double EvaluateReversePolish(string expression)
         {
+            double result = 0;
+
+            Stack<double> valueStack = new Stack<double>();
+
             string[] expressionArray = expression.Split((char[])null, StringSplitOptions.RemoveEmptyEntries);
+
             foreach (string token in expressionArray)
             {
                 try
@@ -51,6 +53,8 @@ namespace Calculator
             try 
             {
                 result = valueStack.Pop();
+                if (valueStack.Count > 0)
+                    throw new Exception("Improperly formatted expression.");
             }
             catch (InvalidOperationException e)
             {
