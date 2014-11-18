@@ -10,11 +10,19 @@ namespace Calculator.Operators.Tests
     [TestClass]
     public class ModulusOperatorUnitTests
     {
+        private ModulusOperator ModulusOperator;
+        private Stack<double> numStack;
+
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            ModulusOperator = new ModulusOperator();
+            numStack = new Stack<double>();
+        }
+
         [TestMethod]
         public void OneModTwoEqualsOneTestMethod()
         {
-            var ModulusOperator = new ModulusOperator();
-            var numStack = new Stack<double>();
             numStack.Push(1);
             numStack.Push(2);
             var result = ModulusOperator.Operate(numStack);
@@ -24,8 +32,6 @@ namespace Calculator.Operators.Tests
         [TestMethod]
         public void ZeroModZeroEqualsNaNTestMethod()
         {
-            var ModulusOperator = new ModulusOperator();
-            var numStack = new Stack<double>();
             numStack.Push(0);
             numStack.Push(0);
             var result = ModulusOperator.Operate(numStack);
@@ -35,8 +41,6 @@ namespace Calculator.Operators.Tests
         [TestMethod]
         public void EighteenModSevenEqualsFourTestMethod()
         {
-            var ModulusOperator = new ModulusOperator();
-            var numStack = new Stack<double>();
             numStack.Push(18);
             numStack.Push(7);
             var result = ModulusOperator.Operate(numStack);

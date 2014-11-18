@@ -10,11 +10,19 @@ namespace Calculator.Operators.Tests
     [TestClass]
     public class MultiplicationOperatorUnitTests
     {
+        private MultiplicationOperator MultiplicationOperator;
+        private Stack<double> numStack;
+
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            MultiplicationOperator = new MultiplicationOperator();
+            numStack = new Stack<double>();
+        }
+
         [TestMethod]
         public void TwoTimesOneEqualsTwoTestMethod()
         {
-            var MultiplicationOperator = new MultiplicationOperator();
-            var numStack = new Stack<double>();
             numStack.Push(2);
             numStack.Push(1);
             var result = MultiplicationOperator.Operate(numStack);
@@ -24,8 +32,6 @@ namespace Calculator.Operators.Tests
         [TestMethod]
         public void ZeroTimesZeroEqualsZeroTestMethod()
         {
-            var MultiplicationOperator = new MultiplicationOperator();
-            var numStack = new Stack<double>();
             numStack.Push(0);
             numStack.Push(0);
             var result = MultiplicationOperator.Operate(numStack);
@@ -35,8 +41,6 @@ namespace Calculator.Operators.Tests
         [TestMethod]
         public void NegativeFiveTimesThreeEqualsNegativeFifteenTestMethod()
         {
-            var MultiplicationOperator = new MultiplicationOperator();
-            var numStack = new Stack<double>();
             numStack.Push(-5);
             numStack.Push(3);
             var result = MultiplicationOperator.Operate(numStack);

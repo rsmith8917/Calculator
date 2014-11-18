@@ -10,11 +10,19 @@ namespace Calculator.Operators.Tests
     [TestClass]
     public class PowerOperatorUnitTests
     {
+        private PowerOperator PowerOperator;
+        private Stack<double> numStack;
+
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            PowerOperator = new PowerOperator();
+            numStack = new Stack<double>();
+        }
+
         [TestMethod]
         public void OneRaisedToTheTwoEqualsOneTestMethod()
         {
-            var PowerOperator = new PowerOperator();
-            var numStack = new Stack<double>();
             numStack.Push(1);
             numStack.Push(2);
             var result = PowerOperator.Operate(numStack);
@@ -24,8 +32,6 @@ namespace Calculator.Operators.Tests
         [TestMethod]
         public void ZeroRaisedToTheZeroEqualsOneTestMethod()
         {
-            var PowerOperator = new PowerOperator();
-            var numStack = new Stack<double>();
             numStack.Push(0);
             numStack.Push(0);
             var result = PowerOperator.Operate(numStack);
@@ -35,8 +41,6 @@ namespace Calculator.Operators.Tests
         [TestMethod]
         public void NegativeFiveRaisedToTheThreeEqualsNeagtiveOneTwentyFiveTestMethod()
         {
-            var PowerOperator = new PowerOperator();
-            var numStack = new Stack<double>();
             numStack.Push(-5);
             numStack.Push(3);
             var result = PowerOperator.Operate(numStack);

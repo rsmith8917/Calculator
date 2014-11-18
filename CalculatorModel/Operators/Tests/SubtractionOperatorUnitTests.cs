@@ -10,11 +10,19 @@ namespace Calculator.Operators.Tests
     [TestClass]
     public class SubtractionOperatorUnitTests
     {
+        private SubtractionOperator SubtractionOperator;
+        private Stack<double> numStack;
+
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            SubtractionOperator = new SubtractionOperator();
+            numStack = new Stack<double>();
+        }
+
         [TestMethod]
         public void TwoMinusOneEqualsOneTestMethod()
         {
-            var SubtractionOperator = new SubtractionOperator();
-            var numStack = new Stack<double>();
             numStack.Push(2);
             numStack.Push(1);
             var result = SubtractionOperator.Operate(numStack);
@@ -24,8 +32,6 @@ namespace Calculator.Operators.Tests
         [TestMethod]
         public void ZeroMinusZeroEqualsZeroTestMethod()
         {
-            var SubtractionOperator = new SubtractionOperator();
-            var numStack = new Stack<double>();
             numStack.Push(0);
             numStack.Push(0);
             var result = SubtractionOperator.Operate(numStack);
@@ -35,8 +41,6 @@ namespace Calculator.Operators.Tests
         [TestMethod]
         public void NegativeFiveMinusThreeEqualsNegativeEightTestMethod()
         {
-            var SubtractionOperator = new SubtractionOperator();
-            var numStack = new Stack<double>();
             numStack.Push(-5);
             numStack.Push(3);
             var result = SubtractionOperator.Operate(numStack);

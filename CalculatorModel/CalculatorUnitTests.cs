@@ -10,10 +10,17 @@ namespace Calculator
     [TestClass]
     public class AdditionOperatorUnitTests
     {
+        private Calc calculator;
+
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            calculator = new Calc();
+        }
+
         [TestMethod]
         public void ReversePolishThreeFourPlusEqualsSevenTestMethod()
         {
-            var calculator = new Calc();
             var result = calculator.EvaluateReversePolish("3 4 +");
             Assert.AreEqual(result, 7);
         }
@@ -21,7 +28,6 @@ namespace Calculator
         [TestMethod]
         public void ReversePolishThreeFourMinusEqualsNegativeOneTestMethod()
         {
-            var calculator = new Calc();
             var result = calculator.EvaluateReversePolish("3 4 -");
             Assert.AreEqual(result, -1);
         }
@@ -29,7 +35,6 @@ namespace Calculator
         [TestMethod]
         public void ReversePolishThreeFourTimesEqualsTwelveTestMethod()
         {
-            var calculator = new Calc();
             var result = calculator.EvaluateReversePolish("3 4 *");
             Assert.AreEqual(result, 12);
         }
@@ -37,7 +42,6 @@ namespace Calculator
         [TestMethod]
         public void ReversePolishThreeFourDivideEqualsThreeFourthsTestMethod()
         {
-            var calculator = new Calc();
             var result = calculator.EvaluateReversePolish("3 4 /");
             Assert.AreEqual(result, 0.75);
         }
@@ -45,7 +49,6 @@ namespace Calculator
         [TestMethod]
         public void ReversePolishPISquaredEqualsNinePointEightSevenTestMethod()
         {
-            var calculator = new Calc();
             var result = calculator.EvaluateReversePolish("PI 2 ^");
             Assert.AreEqual(result, 9.86960440108935, 1e-8);
         }
@@ -53,7 +56,6 @@ namespace Calculator
         [TestMethod]
         public void ReversePolishESquaredEqualsSevenPointThreeNineTestMethod()
         {
-            var calculator = new Calc();
             var result = calculator.EvaluateReversePolish("e 2 ^");
             Assert.AreEqual(result, 7.38905609893, 1e-8);
         }
@@ -61,7 +63,6 @@ namespace Calculator
         [TestMethod]
         public void ReversePolishOneFortyFourSquareRootEqualsTwelveTestMethod()
         {
-            var calculator = new Calc();
             var result = calculator.EvaluateReversePolish("144 sqrt");
             Assert.AreEqual(result, 12);
         }
@@ -69,7 +70,6 @@ namespace Calculator
         [TestMethod]
         public void ReversePolishNineSquareRootEqualsThreeTestMethod()
         {
-            var calculator = new Calc();
             var result = calculator.EvaluateReversePolish("9 SQRT");
             Assert.AreEqual(result, 3);
         }
@@ -77,7 +77,6 @@ namespace Calculator
         [TestMethod]
         public void ReversePolishMultipleOperationsTestMethod()
         {
-            var calculator = new Calc();
             var result = calculator.EvaluateReversePolish("5 1 2 + 4 * + 3 -");
             Assert.AreEqual(result, 14);
         }
@@ -85,7 +84,6 @@ namespace Calculator
         [TestMethod]
         public void ReversePolishFractionalOperationsTestMethod()
         {
-            var calculator = new Calc();
             var result = calculator.EvaluateReversePolish("5.2 1 2.3 + 4 * + 3.7 -");
             Assert.AreEqual(result, 14.7);
         }
@@ -94,7 +92,6 @@ namespace Calculator
         [ExpectedException(typeof(Exception))]
         public void ReversePolishBadTokenThrowsExceptionTestMethod()
         {
-            var calculator = new Calc();
             var result = calculator.EvaluateReversePolish("q 5 2 A");
         }
 
@@ -102,7 +99,6 @@ namespace Calculator
         [ExpectedException(typeof(Exception))]
         public void ReversePolishEmptyExpressionThrowsExceptionTestMethod()
         {
-            var calculator = new Calc();
             var result = calculator.EvaluateReversePolish("");
         }
     }

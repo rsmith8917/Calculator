@@ -10,11 +10,19 @@ namespace Calculator.Operators.Tests
     [TestClass]
     public class DivisionOperatorUnitTests
     {
+        private DivisionOperator DivisionOperator;
+        private Stack<double> numStack;
+
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            DivisionOperator = new DivisionOperator();
+            numStack = new Stack<double>();
+        }
+
         [TestMethod]
         public void TwoDividedByOneEqualsTwoTestMethod()
         {
-            var DivisionOperator = new DivisionOperator();
-            var numStack = new Stack<double>();
             numStack.Push(2);
             numStack.Push(1);
             var result = DivisionOperator.Operate(numStack);
@@ -25,8 +33,6 @@ namespace Calculator.Operators.Tests
         [ExpectedException(typeof(DivideByZeroException))]
         public void ZeroDividedByZeroThrowsDivideByZeroExceptionTestMethod()
         {
-            var DivisionOperator = new DivisionOperator();
-            var numStack = new Stack<double>();
             numStack.Push(0);
             numStack.Push(0);
             var result = DivisionOperator.Operate(numStack);
@@ -35,8 +41,6 @@ namespace Calculator.Operators.Tests
         [TestMethod]
         public void NegativeFiveDividedByThreeEqualsNegativeOnePointSixSevenTestMethod()
         {
-            var DivisionOperator = new DivisionOperator();
-            var numStack = new Stack<double>();
             numStack.Push(-5);
             numStack.Push(3);
             var result = DivisionOperator.Operate(numStack);

@@ -10,11 +10,19 @@ namespace Calculator.Operators.Tests
     [TestClass]
     public class SquareRootOperatorUnitTests
     {
+        private SquareRootOperator SquareRootOperator;
+        private Stack<double> numStack;
+
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            SquareRootOperator = new SquareRootOperator();
+            numStack = new Stack<double>();
+        }
+
         [TestMethod]
         public void SquareRootOfOneEqualsOneTestMethod()
         {
-            var SquareRootOperator = new SquareRootOperator();
-            var numStack = new Stack<double>();
             numStack.Push(1);
             var result = SquareRootOperator.Operate(numStack);
             Assert.AreEqual(result, 1);
@@ -23,8 +31,6 @@ namespace Calculator.Operators.Tests
         [TestMethod]
         public void SquareRootOfZeroEqualsZeroTestMethod()
         {
-            var SquareRootOperator = new SquareRootOperator();
-            var numStack = new Stack<double>();
             numStack.Push(0);
             var result = SquareRootOperator.Operate(numStack);
             Assert.AreEqual(result, 0);
@@ -33,8 +39,6 @@ namespace Calculator.Operators.Tests
         [TestMethod]
         public void SquareRootOfNineEqualsThreeTestMethod()
         {
-            var SquareRootOperator = new SquareRootOperator();
-            var numStack = new Stack<double>();
             numStack.Push(9);
             var result = SquareRootOperator.Operate(numStack);
             Assert.AreEqual(result, 3);
@@ -43,8 +47,6 @@ namespace Calculator.Operators.Tests
         [TestMethod]
         public void SquareRootOfOneFortyFourEqualsTwelveTestMethod()
         {
-            var SquareRootOperator = new SquareRootOperator();
-            var numStack = new Stack<double>();
             numStack.Push(144);
             var result = SquareRootOperator.Operate(numStack);
             Assert.AreEqual(result, 12);
