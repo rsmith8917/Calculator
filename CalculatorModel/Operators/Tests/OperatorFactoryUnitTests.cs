@@ -65,6 +65,13 @@ namespace Calculator.Operators.Tests
             var FactorialOperator = new FactorialOperator();
             Assert.AreEqual(OperatorFactory.GetOperator("!").ToString(), FactorialOperator.ToString());
         }
+
+        [TestMethod]
+        public void OperatorFactoryCreateSineTestMethod()
+        {
+            var SineOperator = new SineOperator();
+            Assert.AreEqual(OperatorFactory.GetOperator("sin").ToString(), SineOperator.ToString());
+        }
  
     }
 }

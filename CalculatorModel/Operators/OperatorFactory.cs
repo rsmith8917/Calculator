@@ -31,6 +31,8 @@ namespace Calculator.Operators
                     return new PowerOperator();
                 case "!":
                     return new FactorialOperator();
+                case "sin":
+                    return new SineOperator();
                 default:
                     throw new Exception("Bad Token");
             }
