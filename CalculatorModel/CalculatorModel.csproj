@@ -53,6 +53,7 @@
     <Compile Include="Operators\OperatorFactory.cs" />
     <Compile Include="Operators\SquareRootOperator.cs" />
     <Compile Include="Operators\SubtractionOperator.cs" />
+    <Compile Include="Operators\Tests\OperatorFactoryUnitTests.cs" />
     <Compile Include="Operators\Tests\PowerOperatorUnitTests.cs" />
     <Compile Include="Operators\Tests\AdditionOperatorUnitTests.cs" />
     <Compile Include="Operators\Tests\DivisionOperatorUnitTests.cs" />
