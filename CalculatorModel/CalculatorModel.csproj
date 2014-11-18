@@ -87,6 +87,7 @@
     <Compile Include="Operators\Tests\SineOperatorUnitTests.cs" />
     <Compile Include="Operators\Tests\SquareRootOperatorUnitTests.cs" />
     <Compile Include="Operators\Tests\SubtractionOperatorUnitTests.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
