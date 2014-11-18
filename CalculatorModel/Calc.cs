@@ -24,7 +24,7 @@ namespace Calculator
 
         public double EvaluateReversePolish(string expression)
         {
-            double result = 0; //This is a comment
+            double result = 0;
 
             Stack<double> valueStack = new Stack<double>();
 
