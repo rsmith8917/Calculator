@@ -82,6 +82,14 @@ namespace Calculator
         }
 
         [TestMethod]
+        public void CalculateMultipleOperationsTestMethod()
+        {
+            calculator.expression = "5 1 2 + 4 * + 3 -";
+            calculator.Calculate();
+            Assert.AreEqual(calculator.expression, "14");
+        }
+
+        [TestMethod]
         public void ReversePolishFractionalOperationsTestMethod()
         {
             var result = calculator.EvaluateReversePolish("5.2 1 2.3 + 4 * + 3.7 -");

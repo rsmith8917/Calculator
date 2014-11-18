@@ -59,6 +59,12 @@ namespace Calculator.Operators.Tests
             Assert.AreEqual(OperatorFactory.GetOperator("sqrt").ToString(), SquareRootOperator.ToString());
         }
 
+        [TestMethod]
+        public void OperatorFactoryCreateFactorialTestMethod()
+        {
+            var FactorialOperator = new FactorialOperator();
+            Assert.AreEqual(OperatorFactory.GetOperator("!").ToString(), FactorialOperator.ToString());
+        }
  
     }
 }

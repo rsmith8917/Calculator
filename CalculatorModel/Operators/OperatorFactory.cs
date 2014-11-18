@@ -29,6 +29,8 @@ namespace Calculator.Operators
                     return new SquareRootOperator();
                 case "^":
                     return new PowerOperator();
+                case "!":
+                    return new FactorialOperator();
                 default:
                     throw new Exception("Bad Token");
             }
