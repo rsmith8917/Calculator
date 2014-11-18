@@ -77,7 +77,7 @@ namespace Calculator
         [TestMethod]
         public void ReversePolishMultipleOperationsTestMethod()
         {
-            var result = calculator.EvaluateReversePolish("5 1 2 + 4 * + 3 -");
+            var result = calculator.EvaluateReversePolish("5 1  2 +  4 *   + 3 -");
             Assert.AreEqual(result, 14);
         }
 

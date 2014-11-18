@@ -27,7 +27,7 @@ namespace Calculator
 
         public double EvaluateReversePolish(string expression)
         {
-            string[] expressionArray = expression.Split(' ');
+            string[] expressionArray = expression.Split((char[])null, StringSplitOptions.RemoveEmptyEntries);
             foreach (string token in expressionArray)
             {
                 try
