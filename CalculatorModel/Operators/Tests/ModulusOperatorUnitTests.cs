@@ -3,24 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Calculator.Operators.Tests
 {
-    [TestClass]
+    [TestFixture]
     public class ModulusOperatorUnitTests
     {
         private ModulusOperator ModulusOperator;
         private Stack<double> numStack;
 
-        [TestInitialize]
+        [SetUp]
         public void TestInitialize()
         {
             ModulusOperator = new ModulusOperator();
             numStack = new Stack<double>();
         }
 
-        [TestMethod]
+        [Test]
         public void OneModTwoEqualsOneTestMethod()
         {
             numStack.Push(1);
@@ -29,7 +29,7 @@ namespace Calculator.Operators.Tests
             Assert.AreEqual(result, 1);
         }
 
-        [TestMethod]
+        [Test]
         public void ZeroModZeroEqualsNaNTestMethod()
         {
             numStack.Push(0);
@@ -38,7 +38,7 @@ namespace Calculator.Operators.Tests
             Assert.IsTrue(double.IsNaN(result));
         }
 
-        [TestMethod]
+        [Test]
         public void EighteenModSevenEqualsFourTestMethod()
         {
             numStack.Push(18);

@@ -3,24 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Calculator.Operators.Tests
 {
-    [TestClass]
+    [TestFixture]
     public class FactorialOperatorUnitTests
     {
         private FactorialOperator FactorialOperator;
         private Stack<double> numStack;
 
-        [TestInitialize]
+        [SetUp]
         public void TestInitialize()
         {
             FactorialOperator = new FactorialOperator();
             numStack = new Stack<double>();
         }
 
-        [TestMethod]
+        [Test]
         public void FactorialOfOneEqualsOneTestMethod()
         {
             numStack.Push(1);
@@ -28,7 +28,7 @@ namespace Calculator.Operators.Tests
             Assert.AreEqual(result, 1);
         }
 
-        [TestMethod]
+        [Test]
         public void FactorialOfZeroEqualsOneTestMethod()
         {
             numStack.Push(0);
@@ -36,7 +36,7 @@ namespace Calculator.Operators.Tests
             Assert.AreEqual(result, 1);
         }
 
-        [TestMethod]
+        [Test]
         public void FactorialOfNineEqualsThreeHundredSixtyTwoThousandTestMethod()
         {
             numStack.Push(9);
@@ -44,7 +44,7 @@ namespace Calculator.Operators.Tests
             Assert.AreEqual(result, 362880);
         }
 
-        [TestMethod]
+        [Test]
         public void FactorialOfFourPointThreeEqualsTwentyFourTestMethod()
         {
             numStack.Push(4.3);

@@ -3,24 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Calculator.Operators.Tests
 {
-    [TestClass]
+    [TestFixture]
     public class AdditionOperatorUnitTests
     {
         private AdditionOperator AdditionOperator;
         private Stack<double> numStack;
 
-        [TestInitialize]
+        [SetUp]
         public void TestInitialize()
         {
             AdditionOperator = new AdditionOperator();
             numStack = new Stack<double>();
         }
 
-        [TestMethod]
+        [Test]
         public void OnePlusTwoEqualsThreeTestMethod()
         {
             numStack.Push(1);
@@ -29,7 +29,7 @@ namespace Calculator.Operators.Tests
             Assert.AreEqual(result, 3);
         }
 
-        [TestMethod]
+        [Test]
         public void ZeroPlusZeroEqualsZeroTestMethod()
         {
             numStack.Push(0);
@@ -38,7 +38,7 @@ namespace Calculator.Operators.Tests
             Assert.AreEqual(result, 0);
         }
 
-        [TestMethod]
+        [Test]
         public void NegativeFivePlusThreeEqualsNeagtiveTwoTestMethod()
         {
             numStack.Push(-5);

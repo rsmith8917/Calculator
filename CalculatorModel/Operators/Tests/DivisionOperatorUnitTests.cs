@@ -3,24 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Calculator.Operators.Tests
 {
-    [TestClass]
+    [TestFixture]
     public class DivisionOperatorUnitTests
     {
         private DivisionOperator DivisionOperator;
         private Stack<double> numStack;
 
-        [TestInitialize]
+        [SetUp]
         public void TestInitialize()
         {
             DivisionOperator = new DivisionOperator();
             numStack = new Stack<double>();
         }
 
-        [TestMethod]
+        [Test]
         public void TwoDividedByOneEqualsTwoTestMethod()
         {
             numStack.Push(2);
@@ -29,7 +29,7 @@ namespace Calculator.Operators.Tests
             Assert.AreEqual(result, 2);
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(DivideByZeroException))]
         public void ZeroDividedByZeroThrowsDivideByZeroExceptionTestMethod()
         {
@@ -38,7 +38,7 @@ namespace Calculator.Operators.Tests
             var result = DivisionOperator.Operate(numStack);
         }
 
-        [TestMethod]
+        [Test]
         public void NegativeFiveDividedByThreeEqualsNegativeOnePointSixSevenTestMethod()
         {
             numStack.Push(-5);

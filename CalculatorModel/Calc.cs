@@ -22,6 +22,11 @@ namespace Calculator
             this.expression = Convert.ToString(EvaluateReversePolish(expression));
         }
 
+        public string ParseInfixExpression(string input)
+        {
+            return "";
+        }
+
         public double EvaluateReversePolish(string expression)
         {
             double result = 0;

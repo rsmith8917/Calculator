@@ -3,24 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Calculator.Operators.Tests
 {
-    [TestClass]
+    [TestFixture]
     public class SineOperatorUnitTests
     {
         private SineOperator SineOperator;
         private Stack<double> numStack;
 
-        [TestInitialize]
+        [SetUp]
         public void TestInitialize()
         {
             SineOperator = new SineOperator();
             numStack = new Stack<double>();
         }
 
-        [TestMethod]
+        [Test]
         public void SineOfPIByTwoEqualsOneTestMethod()
         {
             numStack.Push(Math.PI/2);
@@ -28,7 +28,7 @@ namespace Calculator.Operators.Tests
             Assert.AreEqual(result, 1);
         }
 
-        [TestMethod]
+        [Test]
         public void SineOfZeroEqualsZeroTestMethod()
         {
             numStack.Push(0);
@@ -36,7 +36,7 @@ namespace Calculator.Operators.Tests
             Assert.AreEqual(result, 0);
         }
 
-        [TestMethod]
+        [Test]
         public void SineOfPIEqualsZeroTestMethod()
         {
             numStack.Push(Math.PI);
@@ -44,7 +44,7 @@ namespace Calculator.Operators.Tests
             Assert.AreEqual(result, 0, 1e-8);
         }
 
-        [TestMethod]
+        [Test]
         public void SineOfTwoEqualsPointNineZeroNineTestMethod()
         {
             numStack.Push(2);

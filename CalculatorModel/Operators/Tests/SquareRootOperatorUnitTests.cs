@@ -3,24 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Calculator.Operators.Tests
 {
-    [TestClass]
+    [TestFixture]
     public class SquareRootOperatorUnitTests
     {
         private SquareRootOperator SquareRootOperator;
         private Stack<double> numStack;
 
-        [TestInitialize]
+        [SetUp]
         public void TestInitialize()
         {
             SquareRootOperator = new SquareRootOperator();
             numStack = new Stack<double>();
         }
 
-        [TestMethod]
+        [Test]
         public void SquareRootOfOneEqualsOneTestMethod()
         {
             numStack.Push(1);
@@ -28,7 +28,7 @@ namespace Calculator.Operators.Tests
             Assert.AreEqual(result, 1);
         }
 
-        [TestMethod]
+        [Test]
         public void SquareRootOfZeroEqualsZeroTestMethod()
         {
             numStack.Push(0);
@@ -36,7 +36,7 @@ namespace Calculator.Operators.Tests
             Assert.AreEqual(result, 0);
         }
 
-        [TestMethod]
+        [Test]
         public void SquareRootOfNineEqualsThreeTestMethod()
         {
             numStack.Push(9);
@@ -44,7 +44,7 @@ namespace Calculator.Operators.Tests
             Assert.AreEqual(result, 3);
         }
 
-        [TestMethod]
+        [Test]
         public void SquareRootOfOneFortyFourEqualsTwelveTestMethod()
         {
             numStack.Push(144);

@@ -3,112 +3,126 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
+
 
 namespace Calculator
 {
-    [TestClass]
+    [TestFixture]
     public class AdditionOperatorUnitTests
     {
         private Calc calculator;
 
-        [TestInitialize]
+        [SetUp]
         public void TestInitialize()
         {
             calculator = new Calc();
         }
 
-        [TestMethod]
-        public void ReversePolishThreeFourPlusEqualsSevenTestMethod()
+        #region Reverse Polish Tests
+        [Test]
+        public void ReversePolishThreeFourPlusEqualsSevenTest()
         {
             var result = calculator.EvaluateReversePolish("3 4 +");
             Assert.AreEqual(result, 7);
         }
 
-        [TestMethod]
-        public void ReversePolishThreeFourMinusEqualsNegativeOneTestMethod()
+        [Test]
+        public void ReversePolishThreeFourMinusEqualsNegativeOneTest()
         {
             var result = calculator.EvaluateReversePolish("3 4 -");
             Assert.AreEqual(result, -1);
         }
 
-        [TestMethod]
-        public void ReversePolishThreeFourTimesEqualsTwelveTestMethod()
+        [Test]
+        public void ReversePolishThreeFourTimesEqualsTwelveTest()
         {
             var result = calculator.EvaluateReversePolish("3 4 *");
             Assert.AreEqual(result, 12);
         }
 
-        [TestMethod]
-        public void ReversePolishThreeFourDivideEqualsThreeFourthsTestMethod()
+        [Test]
+        public void ReversePolishThreeFourDivideEqualsThreeFourthsTest()
         {
             var result = calculator.EvaluateReversePolish("3 4 /");
             Assert.AreEqual(result, 0.75);
         }
 
-        [TestMethod]
-        public void ReversePolishPISquaredEqualsNinePointEightSevenTestMethod()
+        [Test]
+        public void ReversePolishPISquaredEqualsNinePointEightSevenTest()
         {
             var result = calculator.EvaluateReversePolish("PI 2 ^");
             Assert.AreEqual(result, 9.86960440108935, 1e-8);
         }
 
-        [TestMethod]
-        public void ReversePolishESquaredEqualsSevenPointThreeNineTestMethod()
+        [Test]
+        public void ReversePolishESquaredEqualsSevenPointThreeNineTest()
         {
             var result = calculator.EvaluateReversePolish("e 2 ^");
             Assert.AreEqual(result, 7.38905609893, 1e-8);
         }
 
-        [TestMethod]
-        public void ReversePolishOneFortyFourSquareRootEqualsTwelveTestMethod()
+        [Test]
+        public void ReversePolishOneFortyFourSquareRootEqualsTwelveTest()
         {
             var result = calculator.EvaluateReversePolish("144 sqrt");
             Assert.AreEqual(result, 12);
         }
 
-        [TestMethod]
-        public void ReversePolishNineSquareRootEqualsThreeTestMethod()
+        [Test]
+        public void ReversePolishNineSquareRootEqualsThreeTest()
         {
             var result = calculator.EvaluateReversePolish("9 SQRT");
             Assert.AreEqual(result, 3);
         }
 
-        [TestMethod]
-        public void ReversePolishMultipleOperationsTestMethod()
+        [Test]
+        public void ReversePolishMultipleOperationsTest()
         {
             var result = calculator.EvaluateReversePolish("5 1  2 +  4 *   + 3 -");
             Assert.AreEqual(result, 14);
         }
 
-        [TestMethod]
-        public void CalculateMultipleOperationsTestMethod()
+        [Test]
+        public void CalculateMultipleOperationsTest()
         {
             calculator.expression = "5 1 2 + 4 * + 3 -";
             calculator.Calculate();
             Assert.AreEqual(calculator.expression, "14");
         }
 
-        [TestMethod]
-        public void ReversePolishFractionalOperationsTestMethod()
+        [Test]
+        public void ReversePolishFractionalOperationsTest()
         {
             var result = calculator.EvaluateReversePolish("5.2 1 2.3 + 4 * + 3.7 -");
             Assert.AreEqual(result, 14.7);
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(Exception))]
-        public void ReversePolishBadTokenThrowsExceptionTestMethod()
+        public void ReversePolishBadTokenThrowsExceptionTest()
         {
             var result = calculator.EvaluateReversePolish("q 5 2 A");
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(Exception))]
-        public void ReversePolishEmptyExpressionThrowsExceptionTestMethod()
+        public void ReversePolishEmptyExpressionThrowsExceptionTest()
         {
             var result = calculator.EvaluateReversePolish("");
         }
+        #endregion
+
+        #region Infix Conversion Tests
+
+        [Test]
+        public void InfixSimpleTest()
+        {
+            var result = calculator.ParseInfixExpression("3 + 4");
+            Assert.AreEqual(result, "3 4 +");
+        }
+
+        #endregion
     }
 }
 
