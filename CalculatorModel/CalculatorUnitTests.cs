@@ -18,34 +18,19 @@ namespace Calculator
         {
             calculator = new Calc();
         }
-
-        #region Reverse Polish Tests
+        
         [Test]
-        public void ReversePolishThreeFourPlusEqualsSevenTest()
+        [TestCase("3 4 +", Result = 7)]
+        [TestCase("3 4 -", Result = -1)]
+        [TestCase("3 4 *", Result = 12)]
+        [TestCase("3 4 /", Result = 0.75)]
+        [TestCase("144 sqrt", Result = 12)]
+        [TestCase("9 SQRT", Result = 3)]
+        [TestCase("5 1  2 +  4 *   + 3 -", Result = 14)]
+        [TestCase("5.2 1 2.3 + 4 * + 3.7 -", Result = 14.7)]
+        public double ReversePolishTest(string expression)
         {
-            var result = calculator.EvaluateReversePolish("3 4 +");
-            Assert.AreEqual(result, 7);
-        }
-
-        [Test]
-        public void ReversePolishThreeFourMinusEqualsNegativeOneTest()
-        {
-            var result = calculator.EvaluateReversePolish("3 4 -");
-            Assert.AreEqual(result, -1);
-        }
-
-        [Test]
-        public void ReversePolishThreeFourTimesEqualsTwelveTest()
-        {
-            var result = calculator.EvaluateReversePolish("3 4 *");
-            Assert.AreEqual(result, 12);
-        }
-
-        [Test]
-        public void ReversePolishThreeFourDivideEqualsThreeFourthsTest()
-        {
-            var result = calculator.EvaluateReversePolish("3 4 /");
-            Assert.AreEqual(result, 0.75);
+            return calculator.EvaluateReversePolish(expression);
         }
 
         [Test]
@@ -63,27 +48,6 @@ namespace Calculator
         }
 
         [Test]
-        public void ReversePolishOneFortyFourSquareRootEqualsTwelveTest()
-        {
-            var result = calculator.EvaluateReversePolish("144 sqrt");
-            Assert.AreEqual(result, 12);
-        }
-
-        [Test]
-        public void ReversePolishNineSquareRootEqualsThreeTest()
-        {
-            var result = calculator.EvaluateReversePolish("9 SQRT");
-            Assert.AreEqual(result, 3);
-        }
-
-        [Test]
-        public void ReversePolishMultipleOperationsTest()
-        {
-            var result = calculator.EvaluateReversePolish("5 1  2 +  4 *   + 3 -");
-            Assert.AreEqual(result, 14);
-        }
-
-        [Test]
         public void CalculateMultipleOperationsTest()
         {
             calculator.expression = "5 1 2 + 4 * + 3 -";
@@ -92,28 +56,17 @@ namespace Calculator
         }
 
         [Test]
-        public void ReversePolishFractionalOperationsTest()
-        {
-            var result = calculator.EvaluateReversePolish("5.2 1 2.3 + 4 * + 3.7 -");
-            Assert.AreEqual(result, 14.7);
-        }
-
-        [Test]
         [ExpectedException(typeof(Exception))]
-        public void ReversePolishBadTokenThrowsExceptionTest()
+        [TestCase("")]
+        [TestCase("q 5 2 A")]
+        [TestCase("3 4 =")]
+        [TestCase("3 + 4")]
+        [TestCase("1 2 3 -")]
+        [TestCase("(1 - 3)")]
+        public void ReversePolishBadInputThrowsExceptionTest(string expression)
         {
-            var result = calculator.EvaluateReversePolish("q 5 2 A");
+            calculator.EvaluateReversePolish(expression);
         }
-
-        [Test]
-        [ExpectedException(typeof(Exception))]
-        public void ReversePolishEmptyExpressionThrowsExceptionTest()
-        {
-            var result = calculator.EvaluateReversePolish("");
-        }
-        #endregion
-
-        #region Infix Conversion Tests
 
         [Test]
         public void InfixSimpleTest()
@@ -122,7 +75,6 @@ namespace Calculator
             Assert.AreEqual(result, "3 4 +");
         }
 
-        #endregion
     }
 }
 
