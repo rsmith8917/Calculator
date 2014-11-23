@@ -89,6 +89,7 @@ namespace Calculator
         [TestCase("3*4%7", Result = "3 4 * 7 %")]
         [TestCase("sin(7)", Result = "7 sin")]
         [TestCase("SQRT(7)", Result = "7 sqrt")]
+        [TestCase("sin(cos(tan(12)))", Result = "12 tan cos sin")]
         public string InfixSimpleTest(string input)
         {
             return calculator.ParseInfixExpression(input);

@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Calc.cs" />
     <Compile Include="CalculatorUnitTests.cs" />
+    <Compile Include="Operators\TangentOperator.cs" />
     <Compile Include="Operators\ParenthesisOperator.cs" />
     <Compile Include="Operators\PowerOperator.cs" />
     <Compile Include="Operators\AdditionOperator.cs" />
@@ -59,6 +60,7 @@
     <Compile Include="Operators\Operator.cs" />
     <Compile Include="Operators\OperatorFactory.cs" />
     <Compile Include="Operators\FactorialOperator.cs" />
+    <Compile Include="Operators\CosineOperator.cs" />
     <Compile Include="Operators\SineOperator.cs" />
     <Compile Include="Operators\SquareRootOperator.cs" />
     <Compile Include="Operators\SubtractionOperator.cs" />

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Calculator.Operators
 {
-    class SineOperator : Operator
+    class CosineOperator : Operator
     {
-        public SineOperator()
+        public CosineOperator()
         {
             this.precedance = 3;
         }
@@ -16,7 +16,7 @@ namespace Calculator.Operators
         public override double Operate(Stack<double> numStack)
         {
             double num = numStack.Pop();
-            return Math.Round(Math.Sin(num),12);
+            return Math.Round(Math.Cos(num),12);
         }
     }
 }

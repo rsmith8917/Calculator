@@ -10,7 +10,7 @@ namespace Calculator.Operators
     {
         static public string RegexPattern
         {
-            get { return @"([()!%\^\+\*/-]|sin|sqrt)"; }
+            get { return @"([()!%\^\+\*/-]|sin|cos|tan|sqrt)"; }
         }
 
         static public Operator GetOperator(string token)
@@ -38,6 +38,10 @@ namespace Calculator.Operators
                     return new FactorialOperator();
                 case "sin":
                     return new SineOperator();
+                case "cos":
+                    return new CosineOperator();
+                case "tan":
+                    return new TangentOperator();
                 case ")":
                 case "(":
                     return new ParenthesisOperator();

@@ -72,6 +72,20 @@ namespace Calculator.Operators.Tests
             var SineOperator = new SineOperator();
             Assert.AreEqual(OperatorFactory.GetOperator("sin").ToString(), SineOperator.ToString());
         }
+
+        [Test]
+        public void OperatorFactoryCreateCosineTestMethod()
+        {
+            var CosineOperator = new CosineOperator();
+            Assert.AreEqual(OperatorFactory.GetOperator("cos").ToString(), CosineOperator.ToString());
+        }
+
+        [Test]
+        public void OperatorFactoryCreateTangentTestMethod()
+        {
+            var TangentOperator = new TangentOperator();
+            Assert.AreEqual(OperatorFactory.GetOperator("tan").ToString(), TangentOperator.ToString());
+        }
  
     }
 }

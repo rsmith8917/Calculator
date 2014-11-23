@@ -12,7 +12,7 @@ namespace Calculator
         {
             Calc calculator = new Calc();
 
-            Console.WriteLine("Reverse Polish Calculator");
+            Console.WriteLine("C# Calculator - Type stuff and it will do math...");
             Console.WriteLine();
 
             while ( true )
