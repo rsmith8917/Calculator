@@ -8,6 +8,13 @@ namespace Calculator
 {
     public class Operator
     {
+        protected int precedance;
+
+        public int Precedance
+        {
+            get { return this.precedance; }
+        }
+
         public virtual double Operate(Stack<double> numStack)
         {
             return 0;

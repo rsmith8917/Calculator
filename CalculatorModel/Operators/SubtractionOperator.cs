@@ -8,6 +8,11 @@ namespace Calculator.Operators
 {
     class SubtractionOperator : Operator
     {
+        public SubtractionOperator()
+        {
+            this.precedance = 0;
+        }
+
         public override double Operate(Stack<double> numStack)
         {
             double num2 = numStack.Pop();

@@ -8,6 +8,11 @@ namespace Calculator.Operators
 {
     class FactorialOperator : Operator
     {
+        public FactorialOperator()
+        {
+            this.precedance = 3;
+        }
+
         public override double Operate(Stack<double> numStack)
         {
             long num = Convert.ToInt64(numStack.Pop());

@@ -8,6 +8,11 @@ namespace Calculator.Operators
 {
     class SineOperator : Operator
     {
+        public SineOperator()
+        {
+            this.precedance = 3;
+        }
+
         public override double Operate(Stack<double> numStack)
         {
             double num = numStack.Pop();

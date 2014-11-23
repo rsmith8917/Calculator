@@ -50,9 +50,9 @@ namespace Calculator
         [Test]
         public void CalculateMultipleOperationsTest()
         {
-            calculator.expression = "5 1 2 + 4 * + 3 -";
+            calculator.expression = "1 + 2 * 5 - 3";
             calculator.Calculate();
-            Assert.AreEqual(calculator.expression, "14");
+            Assert.AreEqual(calculator.expression, "8");
         }
 
         [Test]
@@ -69,10 +69,29 @@ namespace Calculator
         }
 
         [Test]
-        public void InfixSimpleTest()
+        [TestCase("3 + 4" , Result = "3 4 +")]
+        [TestCase("3 + 4 - 7", Result = "3 4 + 7 -")]
+        [TestCase("3 - 4 + 7", Result = "3 4 - 7 +")]
+        [TestCase("3 + 4 * 7", Result = "3 4 7 * +")]
+        [TestCase("3 / 4 - 7", Result = "3 4 / 7 -")]
+        [TestCase("3 / 4 ^ 7", Result = "3 4 7 ^ /")]
+        [TestCase("3 * 4 % 7", Result = "3 4 * 7 %")]
+        [TestCase("3 / 4 !", Result = "3 4 ! /")]
+        [TestCase("3 / ( 4 - 7 )", Result = "3 4 7 - /")]
+        [TestCase("( 1 + 2 ) * ( 4 - 7 )", Result = "1 2 + 4 7 - *")]
+        [TestCase("3 + 4 * 2 / ( 1 - 5 ) ^ 2", Result = "3 4 2 * 1 5 - 2 ^ / +")]
+        [TestCase("3+4", Result = "3 4 +")]
+        [TestCase("3+4*7", Result = "3 4 7 * +")]
+        [TestCase("3/4-7", Result = "3 4 / 7 -")]
+        [TestCase("(1+2)*(4-7)", Result = "1 2 + 4 7 - *")]
+        [TestCase("3+4*2/(1-5)^2", Result = "3 4 2 * 1 5 - 2 ^ / +")]
+        [TestCase("3/4!", Result = "3 4 ! /")]
+        [TestCase("3*4%7", Result = "3 4 * 7 %")]
+        [TestCase("sin(7)", Result = "7 sin")]
+        [TestCase("SQRT(7)", Result = "7 sqrt")]
+        public string InfixSimpleTest(string input)
         {
-            var result = calculator.ParseInfixExpression("3 + 4");
-            Assert.AreEqual(result, "3 4 +");
+            return calculator.ParseInfixExpression(input);
         }
 
     }

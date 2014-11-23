@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Calculator
@@ -19,12 +20,81 @@ namespace Calculator
 
         public void Calculate()
         {
-            this.expression = Convert.ToString(EvaluateReversePolish(expression));
+            this.expression = Convert.ToString(EvaluateReversePolish(ParseInfixExpression(expression)));
+        }
+
+        public string[] SplitInput(string input)
+        {
+            input = input.ToLower();
+
+            string[] inputArray = input.Split((char[])null, StringSplitOptions.RemoveEmptyEntries);
+
+            List<string> result = new List<string>();
+
+            foreach (string str in inputArray)
+            {
+                result.AddRange(Regex.Split(str, OperatorFactory.RegexPattern));
+            }
+
+            return result.Where(x => !string.IsNullOrEmpty(x)).ToArray();
         }
 
         public string ParseInfixExpression(string input)
         {
-            return "";
+            Stack<string> operatorStack = new Stack<string>();
+            string[] inputArray = SplitInput(input);
+            StringBuilder output = new StringBuilder("");
+
+            foreach ( string token in inputArray )
+            {
+                try
+                {
+                    output.Append(this.GetNumber(token).ToString());
+                    output.Append(" ");
+                }
+                catch
+                {
+                    switch ( token ){
+                        case "(":
+                            operatorStack.Push(token);
+                            break;
+                        case ")":
+                            while (operatorStack.Peek() != "(")
+                            {
+                                output.Append(operatorStack.Pop());
+                                output.Append(" ");
+                            }
+                            operatorStack.Pop();
+                            break;
+                        default:
+                            if ( operatorStack.Count > 0 )
+                            {
+                                if (OperatorFactory.GetOperator(token).Precedance <= OperatorFactory.GetOperator(operatorStack.Peek()).Precedance)
+                                {
+                                    output.Append(operatorStack.Pop());
+                                    output.Append(" ");
+                                }
+                            }
+                            operatorStack.Push(token);
+                            break;
+                        
+                    }
+                    
+                    
+                    
+                }
+            }
+
+            int count = operatorStack.Count;
+
+            for (int i = 0; i < count; i++)
+            {
+                output.Append( operatorStack.Pop() );
+                if (i < count - 1)
+                    output.Append(" ");
+            }
+
+            return output.ToString();
         }
 
         public double EvaluateReversePolish(string expression)

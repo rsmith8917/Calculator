@@ -8,6 +8,11 @@ namespace Calculator.Operators
 {
     class PowerOperator : Operator
     {
+        public PowerOperator()
+        {
+            this.precedance = 2;
+        }
+
         public override double Operate(Stack<double> numStack)
         {
             double num2 = numStack.Pop();

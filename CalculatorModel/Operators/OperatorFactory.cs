@@ -8,6 +8,11 @@ namespace Calculator.Operators
 {
     static class OperatorFactory
     {
+        static public string RegexPattern
+        {
+            get { return @"([()!%\^\+\*/-]|sin|sqrt)"; }
+        }
+
         static public Operator GetOperator(string token)
         {
 
@@ -33,6 +38,9 @@ namespace Calculator.Operators
                     return new FactorialOperator();
                 case "sin":
                     return new SineOperator();
+                case ")":
+                case "(":
+                    return new ParenthesisOperator();
                 default:
                     throw new Exception("Bad Token");
             }
