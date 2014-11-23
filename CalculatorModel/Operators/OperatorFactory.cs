@@ -42,6 +42,8 @@ namespace Calculator.Operators
                     return new CosineOperator();
                 case "tan":
                     return new TangentOperator();
+                case "ln":
+                    return new LnOperator();
                 case ")":
                 case "(":
                     return new ParenthesisOperator();

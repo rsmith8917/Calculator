@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Calc.cs" />
     <Compile Include="CalculatorUnitTests.cs" />
+    <Compile Include="Operators\LnOperator.cs" />
     <Compile Include="Operators\TangentOperator.cs" />
     <Compile Include="Operators\ParenthesisOperator.cs" />
     <Compile Include="Operators\PowerOperator.cs" />

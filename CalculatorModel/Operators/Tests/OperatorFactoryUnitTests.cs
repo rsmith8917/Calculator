@@ -86,6 +86,13 @@ namespace Calculator.Operators.Tests
             var TangentOperator = new TangentOperator();
             Assert.AreEqual(OperatorFactory.GetOperator("tan").ToString(), TangentOperator.ToString());
         }
+
+        [Test]
+        public void OperatorFactoryCreateLnTestMethod()
+        {
+            var LnOperator = new LnOperator();
+            Assert.AreEqual(OperatorFactory.GetOperator("ln").ToString(), LnOperator.ToString());
+        }
  
     }
 }
