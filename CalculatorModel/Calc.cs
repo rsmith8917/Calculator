@@ -20,23 +20,9 @@ namespace Calculator
 
         public void Calculate()
         {
-            this.expression = Convert.ToString(EvaluateReversePolish(ParseInfixExpression(expression)));
-        }
-
-        public string[] SplitInput(string input)
-        {
-            input = input.ToLower();
-
-            string[] inputArray = input.Split((char[])null, StringSplitOptions.RemoveEmptyEntries);
-
-            List<string> result = new List<string>();
-
-            foreach (string str in inputArray)
-            {
-                result.AddRange(Regex.Split(str, OperatorFactory.RegexPattern));
-            }
-
-            return result.Where(x => !string.IsNullOrEmpty(x)).ToArray();
+            this.expression = Convert.ToString(
+                                EvaluateReversePolish(
+                                    ParseInfixExpression(expression)));
         }
 
         public string ParseInfixExpression(string input)
@@ -137,6 +123,22 @@ namespace Calculator
             }
 
             return result;
+        }
+
+        private string[] SplitInput(string input)
+        {
+            input = input.ToLower();
+
+            string[] inputArray = input.Split((char[])null, StringSplitOptions.RemoveEmptyEntries);
+
+            List<string> result = new List<string>();
+
+            foreach (string str in inputArray)
+            {
+                result.AddRange(Regex.Split(str, OperatorFactory.RegexPattern));
+            }
+
+            return result.Where(x => !string.IsNullOrEmpty(x)).ToArray();
         }
 
         private double GetNumber(string token)
