@@ -17,6 +17,7 @@ namespace Calculator
             get { return exp; }
             set { exp = value; NotifyPropertyChanged(); } 
         }
+        Stack<double> valueStack = new Stack<double>();
 
         public void Calculate()
         {
@@ -85,33 +86,23 @@ namespace Calculator
 
         public double EvaluateReversePolish(string expression)
         {
-            double result = 0;
+            valueStack = new Stack<double>();
 
-            Stack<double> valueStack = new Stack<double>();
-
-            string[] expressionArray = expression.Split((char[])null, StringSplitOptions.RemoveEmptyEntries);
+            string[] expressionArray = SplitInput(expression);
 
             foreach (string token in expressionArray)
             {
-                try
-                {
-                    valueStack.Push(this.GetNumber(token));
-                }
-                catch
-                {
-                    Operator op = OperatorFactory.GetOperator(token);
-                    try
-                    {
-                        valueStack.Push(op.Operate(valueStack));
-                    }
-                    catch (InvalidOperationException e)
-                    { 
-                        throw new Exception("Improperly formatted expression.", e); 
-                    }
-                }
+                ProcessToken(token);
             }
 
-            try 
+            return GetResult();
+        }
+
+        private double GetResult()
+        {
+            double result = 0;
+
+            try
             {
                 result = valueStack.Pop();
                 if (valueStack.Count > 0)
@@ -123,6 +114,26 @@ namespace Calculator
             }
 
             return result;
+        }
+
+        private void ProcessToken(string token)
+        {
+            try
+            {
+                valueStack.Push(this.GetNumber(token));
+            }
+            catch
+            {
+                Operator op = OperatorFactory.GetOperator(token);
+                try
+                {
+                    valueStack.Push(op.Operate(valueStack));
+                }
+                catch (InvalidOperationException e)
+                {
+                    throw new Exception("Improperly formatted expression.", e);
+                }
+            }
         }
 
         private string[] SplitInput(string input)
