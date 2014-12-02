@@ -18,6 +18,7 @@ namespace Calculator
             set { exp = value; NotifyPropertyChanged(); } 
         }
         Stack<double> valueStack = new Stack<double>();
+        Stack<string> operatorStack = new Stack<string>();
 
         public void Calculate()
         {
@@ -28,58 +29,18 @@ namespace Calculator
 
         public string ParseInfixExpression(string input)
         {
-            Stack<string> operatorStack = new Stack<string>();
-            string[] inputArray = SplitInput(input);
+            operatorStack = new Stack<string>();
             StringBuilder output = new StringBuilder("");
+
+            string[] inputArray = SplitInput(input);
 
             foreach ( string token in inputArray )
             {
-                try
-                {
-                    output.Append(this.GetNumber(token).ToString());
-                    output.Append(" ");
-                }
-                catch
-                {
-                    switch ( token ){
-                        case "(":
-                            operatorStack.Push(token);
-                            break;
-                        case ")":
-                            while (operatorStack.Peek() != "(")
-                            {
-                                output.Append(operatorStack.Pop());
-                                output.Append(" ");
-                            }
-                            operatorStack.Pop();
-                            break;
-                        default:
-                            if ( operatorStack.Count > 0 )
-                            {
-                                if (OperatorFactory.GetOperator(token).Precedance <= OperatorFactory.GetOperator(operatorStack.Peek()).Precedance)
-                                {
-                                    output.Append(operatorStack.Pop());
-                                    output.Append(" ");
-                                }
-                            }
-                            operatorStack.Push(token);
-                            break;
-                        
-                    }
-                    
-                    
-                    
-                }
+                if (ProcessNumericToken(output, token)) { }
+                else { ProcessOperatorToken(output, token); }
             }
 
-            int count = operatorStack.Count;
-
-            for (int i = 0; i < count; i++)
-            {
-                output.Append( operatorStack.Pop() );
-                if (i < count - 1)
-                    output.Append(" ");
-            }
+            BuildOutputString(output);
 
             return output.ToString();
         }
@@ -92,10 +53,85 @@ namespace Calculator
 
             foreach (string token in expressionArray)
             {
-                ProcessToken(token);
+                if( EvaluateNumericToken(token) ) {}
+                else{ EvaluateOperatorToken(token); }
             }
 
             return GetResult();
+        }
+
+
+        #region Private Methods
+
+        private void BuildOutputString(StringBuilder output)
+        {
+            int count = operatorStack.Count;
+
+            for (int i = 0; i < count; i++)
+            {
+                output.Append(operatorStack.Pop());
+                if (i < count - 1)
+                    output.Append(" ");
+            }
+        }
+
+        private void ProcessOperatorToken(StringBuilder output, string token)
+        {
+            switch (token)
+            {
+                case "(":
+                    operatorStack.Push(token);
+                    break;
+                case ")":
+                    while (operatorStack.Peek() != "(")
+                    {
+                        AddOperatorToOutputExpression(output);
+                    }
+                    operatorStack.Pop();
+                    break;
+                default:
+                    if (operatorStack.Count > 0)
+                    {
+                        if (OperatorIsLowerOrEqualPrecedanceThanLast(token))
+                        {
+                            AddOperatorToOutputExpression(output);
+                        }
+                    }
+                    operatorStack.Push(token);
+                    break;
+
+            }
+        }
+
+        private bool ProcessNumericToken(StringBuilder output, string token)
+        {
+            bool status = true;
+
+            try
+            {
+                output.Append(this.GetNumber(token).ToString());
+                output.Append(" ");
+            }
+            catch (Exception)
+            {
+                status = false;
+            }
+
+            return status;
+        }
+
+        private void AddOperatorToOutputExpression(StringBuilder output)
+        {
+            output.Append(operatorStack.Pop());
+            output.Append(" ");
+        }
+
+        private bool OperatorIsLowerOrEqualPrecedanceThanLast(string token)
+        {
+            int tokenPrecedance = OperatorFactory.GetOperator(token).Precedance;
+            int lastPrecendance = OperatorFactory.GetOperator(operatorStack.Peek()).Precedance;
+
+            return tokenPrecedance <= lastPrecendance;
         }
 
         private double GetResult()
@@ -116,24 +152,33 @@ namespace Calculator
             return result;
         }
 
-        private void ProcessToken(string token)
+        private void EvaluateOperatorToken(string token)
         {
+            Operator op = OperatorFactory.GetOperator(token);
+            try
+            {
+                valueStack.Push(op.Operate(valueStack));
+            }
+            catch (InvalidOperationException e)
+            {
+                throw new Exception("Improperly formatted expression.", e);
+            }
+        }
+
+        private bool EvaluateNumericToken(string token)
+        {
+            bool status = true;
+
             try
             {
                 valueStack.Push(this.GetNumber(token));
             }
-            catch
+            catch (Exception)
             {
-                Operator op = OperatorFactory.GetOperator(token);
-                try
-                {
-                    valueStack.Push(op.Operate(valueStack));
-                }
-                catch (InvalidOperationException e)
-                {
-                    throw new Exception("Improperly formatted expression.", e);
-                }
+                status = false;
             }
+
+            return status;
         }
 
         private string[] SplitInput(string input)
@@ -167,6 +212,10 @@ namespace Calculator
             }
         }
 
+        #endregion
+
+        #region NotifyPropertyChanged Methods
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void NotifyPropertyChanged(String propertyName = "")
@@ -177,5 +226,7 @@ namespace Calculator
                 handler(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+
+        #endregion
     }
 }
